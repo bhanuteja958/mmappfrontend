@@ -1,9 +1,11 @@
-import { IonIcon } from '@ionic/react';
-import { fastFood } from 'ionicons/icons';
-import React,{FC} from 'react';
+import { IonFab, IonFabButton, IonIcon, IonModal, IonText } from '@ionic/react';
+import { add, fastFood } from 'ionicons/icons';
+import React,{FC, useState} from 'react';
+import AddEditTransaction from '../AddEditTransaction/AddEditTransaction';
 import styles from './Transactions.module.css';
 
 const Transactions:FC<{}> = () => {
+    const [showAddEditTransactionModal, setShowEditTransactionModal] = useState<boolean>(false);
     return (
         <div className={styles.transactionsContainer}>
             <div className={styles.transactionsOnADate}>
@@ -35,6 +37,17 @@ const Transactions:FC<{}> = () => {
                     </div>
                 </div>
             </div>
+            <IonModal isOpen={showAddEditTransactionModal}>
+                <AddEditTransaction closeModal={() => {setShowEditTransactionModal(false)}}/>
+            </IonModal>
+            <IonFab slot='fixed' horizontal='end' vertical='bottom'>
+                <IonFabButton  onClick={() => {
+                        setShowEditTransactionModal(true);
+                    }}>
+                    <IonIcon icon={add}/>
+                </IonFabButton>
+            </IonFab>
+            
         </div>
     )
 }

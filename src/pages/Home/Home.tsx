@@ -1,9 +1,10 @@
-import { IonPage, IonHeader, IonToolbar, IonIcon, IonTitle,IonContent, IonLabel, IonFooter, IonSelect, IonSelectOption} from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonIcon, IonTitle,IonContent, IonLabel, IonFooter, IonSelect, IonSelectOption, IonButton, IonModal} from '@ionic/react';
 import React, { FC, useState } from 'react';
 import styles from './Home.module.css';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import Transactions from '../../components/Transactions/Transactions';
 import { HOME_TABS } from '../../config/constants';
+import AddEditTransaction from '../../components/AddEditTransaction/AddEditTransaction';
 
 const Home:FC<{}> = () => {
     const [selectedTab, setSelectedTab] = useState<string>('dashboard');

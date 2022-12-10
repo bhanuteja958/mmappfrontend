@@ -1,0 +1,26 @@
+.transactionForm{
+    padding: 5vw;
+    display: flex;
+    flex-direction: column;
+    gap:4vw;
+}
+
+.transactionFormLabel{
+    font-size:5vw;
+    font-weight: 500;
+}
+
+.transactionFormInput,
+.transactionFormSelect,
+.transactionFormTextarea {
+    padding:2vw !important;
+    border: 0.1vw solid black;
+    border-radius: 1vw;
+    height:10vw;
+}
+
+.transactionFormInput, .transactionFormTextarea{
+   --padding-top:0;
+   --padding-bottom:0;
+   --padding-start:0;
+}
