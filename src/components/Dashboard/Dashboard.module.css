@@ -1,0 +1,81 @@
+.dashboardContainer{
+    padding: 0 5vw;
+    margin-bottom: 4vw !important;
+}
+
+.moneyDataTitle{
+    margin:4vw 0 !important;
+}
+
+.moneyData{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:4vw;
+    margin-top:2vw !important
+}
+
+.moneyCard{
+    padding: 4vw;
+    border-radius: 1vw;
+    box-shadow: 0 0 2px 0px var(--ion-color-medium-tint);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+.expense{
+    color: #A92B2B;
+}
+
+.income{
+    color: #2BA96C;
+}
+
+.balance{
+    color: #2B47A9;
+}
+
+.paymentAggregationsTitle{
+    margin: 5vw 0 !important;
+}
+
+.paymentAggregations{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:4vw;
+}
+
+.aggregationData{
+    color: #5E50FF;
+}
+
+.topCategoriesTitle{
+    margin: 5vw 0 !important;
+}
+
+.topCategories{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 4vw;
+}
+
+.categoryCard{
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vw;
+    box-shadow: 0 0 2px 0px var(--ion-color-medium-tint);
+    border-radius: 1vw;
+    color: #2BA96C;
+}
+
+.categoryIcon{
+    font-size:6vw
+}   
+
+.categoryName{
+    font-size:5vw;
+    font-weight:500;
+}

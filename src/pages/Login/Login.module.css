@@ -1,0 +1,18 @@
+.loginContainer{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height:100%;
+}
+
+.loginButton{
+    margin-top:1.25rem;
+    font-size: 4.5vw;
+    height:10vw
+}
+
+.appImage{
+    width:20vw;
+    height:auto;
+}

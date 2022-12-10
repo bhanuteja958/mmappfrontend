@@ -1,0 +1,50 @@
+*{
+    font-family: 'Poppins',sans-serif !important;  
+    padding:0;
+    box-sizing: border-box;
+    margin:0 !important;
+}
+
+h1{
+    font-size: 8vw;
+}
+
+h2{
+    font-size: 7.5vw;
+}
+
+h3{
+    font-size: 6.5vw;
+}
+
+h4{
+    font-size: 6vw;
+}
+
+h5{
+    font-size: 5.5vw;
+}
+
+h6{
+    font-size: 5vw;
+}
+
+.inputLabel{
+    font-size: 6vw !important;
+}
+
+.selectInput{
+    padding: 2vw;
+    border: 0.1vw solid black;
+    border-radius: 1vw;
+}
+
+.formGroup{
+    display: flex;
+    flex-direction: column;
+    gap:1.5vw;
+}
+
+/* ion-header::after{
+    background-image: none !important;
+} */

@@ -1,0 +1,57 @@
+.transactionsContainer{
+    padding: 0 5vw;
+    margin-bottom: 4vw !important;
+}
+
+.date{
+    font-size:4.5vw;
+    font-weight: bold;
+    margin: 2vw 0 !important;
+}
+
+.transactions{
+    display: flex;
+    flex-direction: column;
+    gap:3.5vw
+}
+
+.transaction{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:2vw 4vw;
+    box-shadow: 0 0 2px 0 var(--ion-color-medium-tint);
+    border-radius: 1vw;
+}
+
+.transactionDataLeft{
+    display: flex;
+    align-items: center;
+    gap: 4vw;
+}
+
+.transactionCategoryIcon{
+    font-size:7vw;
+}
+
+.transactionType{
+    font-size:3.75vw;
+}
+
+.transactionDataRight{
+    display: flex;
+    align-items: center;
+}
+
+.transactionAmount{
+    font-size: 4.5vw;
+    font-weight: 500;
+}
+
+.debitAmount{
+    color: var(--ion-color-success);
+}
+
+.creditAmount{
+    color: var(--ion-color-danger);
+}
