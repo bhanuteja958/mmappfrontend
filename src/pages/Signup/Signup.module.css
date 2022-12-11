@@ -1,0 +1,21 @@
+.signupContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+}
+
+.signupForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.signupBtn{
+    margin-top: 4.5vw !important;
+    font-size: 4.5vw;
+    height:10vw
+}
+
+.loginText{
+    margin-top: 3vw !important;
+}

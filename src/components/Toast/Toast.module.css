@@ -1,0 +1,39 @@
+.toast{
+    position: absolute;
+    top:20vw;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1vw 4vw;
+    width: max-content;
+    max-width: 90vw;
+    border-radius: 1vw;
+    animation: slideInFromTop 0.3s ease-in-out;
+}
+
+.success{
+    background-color: var(--ion-color-success-tint);
+    color: var(--ion-color-success);
+    box-shadow: 2px 2px 2px 0 var(--ion-color-success);
+}
+
+.error{
+    background-color: var(--ion-color-danger-tint);
+    color: var(--ion-color-danger);
+    box-shadow: 2px 2px 2px 0 var(--ion-color-danger);
+}
+
+.warning{
+    background-color: var(--ion-color-warning-tint);
+    color: var(--ion-color-warning);
+    box-shadow: 2px 2px 2px 0 var(--ion-color-warning);
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateX(-50%) translateY(-5vw);
+        opacity: 0;
+    } to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}

@@ -29,10 +29,6 @@ h6{
     font-size: 5vw;
 }
 
-.inputLabel{
-    font-size: 6vw !important;
-}
-
 .selectInput{
     padding: 2vw;
     border: 0.1vw solid black;
@@ -42,7 +38,22 @@ h6{
 .formGroup{
     display: flex;
     flex-direction: column;
-    gap:1.5vw;
+    gap:4vw;
+}
+
+.inputLabel{
+    font-size: 6vw !important;
+    font-weight: 500;
+}
+
+.formInput{
+    --padding-top:0;
+    --padding-bottom:0;
+    --padding-start:0;
+    border: 0.1vw solid black;
+    border-radius: 1vw;
+    height:10vw;
+    padding: 1.25vw 2vw !important;
 }
 
 .headerArrowBack{
