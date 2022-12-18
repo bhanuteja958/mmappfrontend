@@ -51,3 +51,5 @@ export const PAYMENT_AGGREGATIONS = [
         displayName: 'Cash',   
     }
 ]
+
+export const DATE_FILTER_NEEDED_TABS = ['dashboard', 'transactions'];

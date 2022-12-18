@@ -1,13 +1,17 @@
 import { IonButton, IonContent, IonInput, IonLabel, IonPage } from '@ionic/react';
 import React, { FC, useState } from 'react';
-import { useToast } from '../../Common/CustomHooks';
+import { useHistory } from 'react-router';
+import { useToast } from '../../common/CustomHooks';
 import Toast from '../../components/Toast/Toast';
+import { register } from '../../services/APIService';
 import styles from './Signup.module.css';
 const Signup:FC<{}> = () => {
+    const history = useHistory();
     const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const {text, type, showToast, setToastTextAndType,displayToast} = useToast(2500);
+    const {text, type, showToast, displayToast} = useToast(2500);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const usernameInputHandler = (event:any) => {
         const {value} = event.target;
@@ -26,20 +30,17 @@ const Signup:FC<{}> = () => {
 
     const validateSignupForm = () => {
         if( username === ''){
-            setToastTextAndType('Please enter username', 'warning');
-            displayToast();
+            displayToast('Please enter username', 'warning');
             return false;
         }
 
         if(email === ''){
-            setToastTextAndType('Please enter email', 'warning');
-            displayToast();
+            displayToast('Please enter email', 'warning');
             return false;
         }
 
         if(password === ''){
-            setToastTextAndType('Please enter password', 'warning');
-            displayToast();
+            displayToast('Please enter password', 'warning');
             return false
         }
 
@@ -49,7 +50,21 @@ const Signup:FC<{}> = () => {
     const signupUser = () => {
         const isValidUserDetails:boolean = validateSignupForm();
         if(isValidUserDetails){
-            //signup user
+            setIsLoading(true);
+            register(username, email, password).then((res) => {
+                setIsLoading(false);
+                if(res.is_error){
+                    displayToast(res.message, 'error');
+                } else {
+                    displayToast(res.message, 'success');
+                    setTimeout(() => {
+                        history.replace('/login');
+                    }, 2500)
+                }
+            }).catch((error) => {
+                setIsLoading(false);
+                displayToast(error.response ? error.response.message : error.message, 'error');
+            })
         }
     }
 

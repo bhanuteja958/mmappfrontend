@@ -1,4 +1,4 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, useHistory, withRouter} from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -28,23 +28,58 @@ import  './global.css';
 import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
 import Signup from './pages/Signup/Signup';
+import { useEffect, useReducer, useState } from 'react';
+import { GlobalContext } from './store/GlobalContext';
+import { GlobalReducer, initialState } from './store/GlobalReducer';
+import { checkInLocalIfLoggedIn } from './services/AuthService';
 
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Route path="/home" component={Home} />
-        <Route exact path="/">
-          <Redirect to="/login" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  const history = useHistory()
+  const [state, dispatch] = useReducer(GlobalReducer, initialState)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const {isLoggedIn} = state;
+
+  const gotoHome = () => {
+    history.replace('/login')
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+    checkInLocalIfLoggedIn().then((res) => {
+      console.log('hello');
+      setIsLoading(false);
+      if (res) {
+        dispatch({type: 'LOGIN', payload: res.userDetails})
+      }
+      setIsLoading(false);
+    }).catch((error) => {
+      setIsLoading(false);
+    });
+  },[]);
+
+  return (
+    <GlobalContext.Provider value={{state, dispatch}}>
+       <IonApp>
+        {!isLoading ? (
+           <IonReactRouter>
+           <IonRouterOutlet>
+               <Route exact path="/login" component={Login}/>
+               <Route exact path="/signup" component={Signup} />
+               <Route path="/home" component={Home} />
+               <Route exact path="/">
+                 {isLoggedIn ? <Redirect to="/home" /> :<Redirect to="/login" />}
+               </Route>
+           </IonRouterOutlet>
+         </IonReactRouter>
+        ) : <p>loading</p>}
+       
+      </IonApp>
+    </GlobalContext.Provider>
+  )
+  
+};
 
 export default App;

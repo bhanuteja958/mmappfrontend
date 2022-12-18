@@ -8,6 +8,7 @@
     max-width: 90vw;
     border-radius: 1vw;
     animation: slideInFromTop 0.3s ease-in-out;
+    z-index: 10000000;
 }
 
 .success{

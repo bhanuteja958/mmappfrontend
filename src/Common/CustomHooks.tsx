@@ -5,17 +5,14 @@ export const useToast = (duration: number) => {
     const [type, setType] = useState<string>('');
     const [showToast, setShowToast] = useState<boolean>(false);
 
-    const setToastTextAndType = (text: string, type:string) => {
+    const displayToast = (text:string, type:string) => {
         setText(text);
         setType(type);
-    }
-
-    const displayToast = () => {
         setShowToast(true);
         setTimeout(() => {
             setShowToast(false);
         }, duration);
     }
 
-    return { text, type, showToast, setToastTextAndType, displayToast}
+    return { text, type, showToast, displayToast}
 }

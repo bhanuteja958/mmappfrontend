@@ -1,0 +1,40 @@
+.accountContainer{
+    padding: 4vw 5vw;
+}
+
+.accountForm{
+    display: flex;
+    flex-direction: column;
+    gap:4vw;
+}
+
+.accountFormLabel{
+    font-weight:500;
+    font-size:4.5vw;
+}
+
+.accountActions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:4vw;
+    border:  0.5vw dashed var(--ion-color-danger);
+    border-radius: 1vw;
+    margin-top: 7vw !important; 
+}
+
+.accountLogout, .accountDelete{
+    display: flex;
+    align-items: center;
+    gap:1vw;
+    color: var(--ion-color-danger);
+}
+
+.logoutIcon, .deleteIcon{
+    font-size:6vw;
+}
+
+.logoutText{
+    font-size:4.5vw;
+    font-weight: 500;
+}
