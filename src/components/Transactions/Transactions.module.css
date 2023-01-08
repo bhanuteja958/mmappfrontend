@@ -22,6 +22,7 @@
     padding:2vw 4vw;
     box-shadow: 0 0 2px 0 var(--ion-color-medium-tint);
     border-radius: 1vw;
+    animation: popIn 0.3s ease-in-out;
 }
 
 .transactionDataLeft{
@@ -30,12 +31,20 @@
     gap: 4vw;
 }
 
+.transactionDesc{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:12ch;
+}
+
 .transactionCategoryIcon{
     font-size:7vw;
 }
 
 .transactionType{
     font-size:3.75vw;
+    text-transform: uppercase;
 }
 
 .transactionDataRight{
@@ -48,10 +57,32 @@
     font-weight: 500;
 }
 
-.debitAmount{
+.addTransactionBtn{
+    position: fixed !important;
+    bottom:20vw;
+    right:5vw;
+    --border-radius: 50%;
+    height:15vw;
+    width:15vw;
+}
+
+.addIcon{
+    font-size:7vw
+}
+
+.expense{
+    color: var(--ion-color-danger);
+}
+
+.income{
     color: var(--ion-color-success);
 }
 
-.creditAmount{
-    color: var(--ion-color-danger);
+@keyframes popIn {
+    0%{
+        opacity:0;
+    }
+    100%{
+        opacity:1;
+    }
 }

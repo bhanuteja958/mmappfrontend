@@ -1,0 +1,14 @@
+.noTransactionsContainer{
+    text-align: center;
+    margin: 4vw 0 !important;
+}
+
+.suspiciousImage{
+    width:25%;
+    margin:auto !important;
+}
+
+.noTransactionsText{
+    font-weight: 500;
+    font-size:4.5vw;
+}

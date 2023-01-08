@@ -67,3 +67,30 @@ h6{
     height:10vw;
     font-size:4.25vw;
 }
+
+.action-sheet-title{
+    font-size:5vw;
+    font-weight: 500;
+    color: var(--ion-color-primary) !important;
+}
+
+.action-sheet-wrapper{
+    max-height:50vh !important; 
+}
+
+.action-sheet-button-inner{
+    text-transform: capitalize;
+}
+
+.action-sheet-cancel{
+    display:none !important;
+}
+
+.capitalize{
+    text-transform: capitalize;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+

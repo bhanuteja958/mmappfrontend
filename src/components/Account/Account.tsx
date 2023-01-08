@@ -1,10 +1,10 @@
-import { IonIcon, IonInput, IonLabel } from '@ionic/react';
+import { IonIcon, IonInput, IonLabel, IonLoading } from '@ionic/react';
 import { logOutOutline, trashBinSharp } from 'ionicons/icons';
-import React, {FC, useContext, useState} from 'react';
+import React, {FC, useContext, useEffect, useState} from 'react';
 import { useHistory } from 'react-router';
 import { useToast } from '../../common/CustomHooks';
 import { logout } from '../../services/APIService';
-import { deleteAuthDetailsLocally } from '../../services/AuthService';
+import { checkInLocalIfLoggedIn, deleteAuthDetailsLocally } from '../../services/AuthService';
 import { GlobalContext } from '../../store/GlobalContext';
 import Toast from '../Toast/Toast';
 import styles from './Account.module.css';
@@ -12,26 +12,27 @@ import styles from './Account.module.css';
 const Account:FC<{}> = () => {
     const history = useHistory();
     const {state, dispatch} = useContext(GlobalContext);
-    const [username, setUsername] = useState<string>('test');
-    const [email, setEmail] = useState<string>('test@gmail.com');
+    const [username, setUsername] = useState<string>();
+    const [email, setEmail] = useState<string>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const {type, text, displayToast, showToast} = useToast(3000);
+    const [loadingText, setLoadingText] = useState('Logging Out')
 
     const signoutUser = () => {
         setIsLoading(true);
+        setLoadingText('')
         logout(state.userDetails.auth_token).then((res) => {
             if(res?.is_error) {
                 setIsLoading(false);
                 displayToast(res.message, 'error');
             } else {
                 deleteAuthDetailsLocally().then(() => {
-                    displayToast(res.message, 'success');
-                    setTimeout(() => {
-                        dispatch({type: 'LOGOUT'})
-                        history.replace('/login');
-                    }, 2000);
-                }).catch((err) => {
-                    console.log('error');
+                    setIsLoading(false);
+                    dispatch({type: 'LOGOUT'})
+                    history.replace('/login');
+                }).catch((error) => {
+                    setIsLoading(false);
+                    displayToast(error.response ? error.response.message : error.message, 'error');
                 }); 
             } 
         }).catch((error) => {
@@ -39,6 +40,11 @@ const Account:FC<{}> = () => {
             displayToast(error.response ? error.response.message : error.message, 'error');
         });
     }
+
+    useEffect(() => {
+        setUsername(state.userDetails.username);
+        setEmail(state.userDetails.email);
+    })
 
     return (
         <div className={styles.accountContainer}>
@@ -62,6 +68,7 @@ const Account:FC<{}> = () => {
                     </div>
                 </div>
             </div>
+            <IonLoading isOpen={isLoading} spinner="circles" message={loadingText}/>
             {showToast && <Toast type={type} text={text} />}
         </div>
     )

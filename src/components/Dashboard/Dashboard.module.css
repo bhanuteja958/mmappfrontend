@@ -20,11 +20,39 @@
     box-shadow: 0 0 2px 0px var(--ion-color-medium-tint);
     text-align: center;
     display: flex;
+    position: relative;
     flex-direction: column;
     gap: 1vw;
+    animation: popIn 0.3s ease-in-out;
 }
 
-.expense{
+.exactAmountContainer {
+    position: absolute;
+    top:5%;
+    right:3%;
+}
+
+.exactAmount{
+    position: absolute;
+    bottom:-100%;
+    left:-300%;
+    background-color: white;
+    box-shadow: 0 0 2px 0px var(--ion-color-medium-tint);
+    padding:0.5vw 2vw;
+    display: none;
+    font-weight: 500;
+    border-radius: 0.2vw;
+}
+
+.infoIcon{
+    font-size:5vw
+}
+
+.infoIcon:hover + .exactAmount{
+    display:block
+}
+
+.expenses{
     color: #A92B2B;
 }
 
@@ -78,4 +106,15 @@
 .categoryName{
     font-size:5vw;
     font-weight:500;
+}
+
+@keyframes popIn {
+    0%{
+        opacity:0;
+        transform: scale(0.8);
+    }
+    100%{
+        opacity:1;
+        transform: scale(1);
+    }
 }

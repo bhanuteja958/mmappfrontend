@@ -1,6 +1,6 @@
 .toast{
     position: absolute;
-    top:20vw;
+    top:5vw;
     left: 50%;
     transform: translateX(-50%);
     padding: 1vw 4vw;

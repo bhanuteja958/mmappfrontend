@@ -1,4 +1,4 @@
-import { Redirect, Route, useHistory, withRouter} from 'react-router-dom';
+import { Redirect, Route, useHistory, withRouter,} from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -37,20 +37,11 @@ import { checkInLocalIfLoggedIn } from './services/AuthService';
 setupIonicReact();
 
 const App: React.FC = () => {
-  const history = useHistory()
   const [state, dispatch] = useReducer(GlobalReducer, initialState)
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const {isLoggedIn} = state;
-
-  const gotoHome = () => {
-    history.replace('/login')
-  }
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    setIsLoading(true);
     checkInLocalIfLoggedIn().then((res) => {
-      console.log('hello');
-      setIsLoading(false);
       if (res) {
         dispatch({type: 'LOGIN', payload: res.userDetails})
       }
@@ -65,17 +56,16 @@ const App: React.FC = () => {
        <IonApp>
         {!isLoading ? (
            <IonReactRouter>
-           <IonRouterOutlet>
-               <Route exact path="/login" component={Login}/>
-               <Route exact path="/signup" component={Signup} />
-               <Route path="/home" component={Home} />
-               <Route exact path="/">
-                 {isLoggedIn ? <Redirect to="/home" /> :<Redirect to="/login" />}
-               </Route>
-           </IonRouterOutlet>
-         </IonReactRouter>
+            <IonRouterOutlet>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/signup" component={Signup} />
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/">
+                  {state.isLoggedIn ? <Redirect to="/home" /> : <Redirect to="/login" />}
+                </Route>
+            </IonRouterOutlet>
+          </IonReactRouter>
         ) : <p>loading</p>}
-       
       </IonApp>
     </GlobalContext.Provider>
   )

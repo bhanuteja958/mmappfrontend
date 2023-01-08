@@ -39,6 +39,11 @@ const Signup:FC<{}> = () => {
             return false;
         }
 
+        if(!email.match(/^\S+@\S+\.\S+$/)) {
+            displayToast('Please enter a valid email', 'warning');
+            return false;
+        }
+
         if(password === ''){
             displayToast('Please enter password', 'warning');
             return false

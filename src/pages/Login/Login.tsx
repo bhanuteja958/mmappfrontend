@@ -1,8 +1,9 @@
-import { IonButton, IonContent, IonInput, IonLabel, IonPage} from '@ionic/react';
+import { IonButton, IonContent, IonInput, IonLabel, IonLoading, IonPage, useIonLoading} from '@ionic/react';
 import { FC, useContext, useState } from 'react'
 import { useHistory } from 'react-router';
 import { useToast } from '../../common/CustomHooks';
 import Toast from '../../components/Toast/Toast';
+import { SPINNER_STYLE } from '../../config/constants';
 import { login } from '../../services/APIService';
 import { setAuthDetailsLocally } from '../../services/AuthService';
 import { GlobalContext } from '../../store/GlobalContext';
@@ -45,25 +46,23 @@ const Login:FC<any>  = () => {
         if(isValidCredentials){
             setIsLoading(true);
             login(username,password).then((res) => {
+                setIsLoading(false);
                 if(res?.is_error){
                     displayToast(res.message, 'error')
-                    setIsLoading(false);
                 } else {
                     dispatch({type: 'LOGIN', payload: res.data.user_details})
                     setAuthDetailsLocally(res.data.user_details).then(() => {
-                        displayToast(res.message, 'success');
-                        setTimeout(() => {
-                            setIsLoading(false);
-                            history.replace('/home');
-                        }, 2000);
+                        setIsLoading(false);
+                        history.replace('/home');
                     }).catch((error) => {
-                        console.log('hello');
+                        setIsLoading(false);
+                        displayToast(error.response ? error.response.message : error.message, 'error')
                     }) 
                 }
             }).catch((error) => {
+                setIsLoading(false);
                 let displayMessage = error.response ? error.response.message : error.message;
                 displayToast(displayMessage, 'error');
-                setIsLoading(false);
             })      
         }
     }
@@ -110,6 +109,7 @@ const Login:FC<any>  = () => {
                     </div>
                 </div>
                 {showToast && <Toast text={text} type={type}/>}
+                <IonLoading isOpen={isLoading} spinner={SPINNER_STYLE} message='Authenticating User'/>
             </IonContent>
         </IonPage>
     )
