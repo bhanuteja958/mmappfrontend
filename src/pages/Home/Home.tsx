@@ -122,7 +122,7 @@ const Home:FC<{}> = () => {
                         key={tab.key}
                         className={styles.footerButton}
                         style={{
-                            color: (selectedTab === tab.key) ? 'var(--ion-color-primary)': 'black'
+                            color: (selectedTab === tab.key) ? 'var(--ion-color-primary)': 'var(--ion-color-dark)'
                         }}
                         onClick={() => {tabClickHandler(tab.key)}}
                     >

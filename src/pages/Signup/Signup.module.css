@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     height:100%;
+    padding: 0 7.5vw;
 }
 
 .signupForm{
@@ -18,4 +19,5 @@
 
 .loginText{
     margin-top: 3vw !important;
+    text-align: center;
 }

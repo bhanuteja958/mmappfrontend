@@ -53,15 +53,15 @@
 }
 
 .expenses{
-    color: #A92B2B;
+    color: var(--ion-color-danger);
 }
 
 .income{
-    color: #2BA96C;
+    color: var(--ion-color-success);
 }
 
 .balance{
-    color: #2B47A9;
+    color: var(--ion-color-primary);
 }
 
 .paymentAggregationsTitle{
@@ -75,7 +75,7 @@
 }
 
 .aggregationData{
-    color: #5E50FF;
+    color: var(--ion-color-tertiary);
 }
 
 .topCategoriesTitle{

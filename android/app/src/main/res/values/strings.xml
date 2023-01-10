@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Expenser</string>
+    <string name="title_activity_main">Expenser</string>
+    <string name="package_name">com.android.expenser</string>
+    <string name="custom_url_scheme">com.android.expenser</string>
+</resources>

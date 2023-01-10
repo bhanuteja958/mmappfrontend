@@ -30,7 +30,7 @@
 .transactionFormSelect,
 .transactionFormTextarea {
     padding:2vw !important;
-    border: 0.1vw solid black;
+    border: 0.1vw solid var(--ion-color-dark);
     border-radius: 1vw;
     height:10vw;
 }

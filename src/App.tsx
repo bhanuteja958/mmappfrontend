@@ -1,6 +1,7 @@
 import { Redirect, Route, useHistory, withRouter,} from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonRouterOutlet, setupIonicReact, useIonRouter } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import {App as capacitorApp} from '@capacitor/app'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -39,6 +40,12 @@ setupIonicReact();
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(GlobalReducer, initialState)
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  capacitorApp.addListener('backButton', ({canGoBack}) => {
+    if(!canGoBack) {
+      capacitorApp.exitApp()
+    }
+  });
 
   useEffect(() => {
     checkInLocalIfLoggedIn().then((res) => {
